@@ -8,8 +8,7 @@ RUN apk add --no-cache libc6-compat
 #to run npm ci
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --only=production
-
+RUN npm ci 
 # END
 
 #Create the build image
