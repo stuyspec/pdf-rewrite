@@ -1,0 +1,36 @@
+services:
+
+  gateway:
+    image: nginx:1.31.2-alpine
+    container_name: pdf-gateway-router
+    ports: 
+      - "3004:80"
+    volumes: 
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - pdf-frontend
+      - pdf-backend
+    networks:
+      - pdf-app-network
+
+  pdf-frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: pdf-frontend
+    networks:
+      - pdf-app-network
+
+  pdf-backend:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile 
+    env_file:
+      - ./server/.env
+    container_name: pdf-backend
+    networks:
+      - pdf-app-network
+
+networks:
+  pdf-app-network:
+    driver: bridge
