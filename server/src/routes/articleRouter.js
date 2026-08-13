@@ -7,7 +7,6 @@ router.get("/", (req, res) => {
   res.send("Welcome to the aricle router section!");
 });
 
-
 router.get("/staff/:id", async (req, res, next) => {
   const staff = req.params.id;
   try {
@@ -30,7 +29,9 @@ router.get("/:volume/:issue", async (req, res, next) => {
     const articles = await Article.find({
       volume: volumeNumber,
       issue: issueNumber,
-    }).select("contributors title section_id slug").populate("contributors", "name");
+    })
+      .select("contributors title section_id slug")
+      .populate("contributors", "name");
     res.json(articles);
   } catch (err) {
     next(err);

@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
-const db_str_articles = process.env.MONGODB_URI_ARTICLES;
-const articleConnection = mongoose.createConnection(db_str_articles);
-
+const db_str = process.env.MONGODB_URI;
+const articleConnection = mongoose.createConnection(db_str);
 
 const staffSchema = new mongoose.Schema({
   name: {

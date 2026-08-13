@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
 });
 
 const articleRouter = require("./articleRouter").router;
-router.use("/article", articleRouter)
+router.use("/article", articleRouter);
 
 const pdfRouter = require("./pdfRouter").router;
 router.use("/pdf", pdfRouter);
