@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
-
-const db_str_pdf = process.env.MONGODB_URI_PDF;
-const pdfConnection = mongoose.createConnection(db_str_pdf);
+const db_str = process.env.MONGODB_URI;
+const pdfConnection = mongoose.createConnection(db_str);
 
 const paperSchema = new mongoose.Schema({
   volume: { type: Number },
